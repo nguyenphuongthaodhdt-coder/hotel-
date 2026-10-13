@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm Tiếng Anh Lễ Tân Khách Sạn (Hotel Front Desk Quiz)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Confetti JS -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- Header -->
+    <header class="bg-slate-800 border-b border-slate-700/60 sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20 text-slate-900 font-bold text-2xl">
+                    <i class="fa-solid fa-bell-concierge"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight font-['Playfair_Display'] text-amber-400">Hotel English Pro</h1>
+                    <p class="text-xs text-slate-400">Luyện tập tiếng Anh chuyên ngành Lễ tân Khách sạn</p>
+                </div>
+            </div>
+            
+            <div id="stats-bar" class="hidden flex items-center gap-4 bg-slate-900/60 border border-slate-700 px-4 py-2 rounded-xl text-sm">
+                <div class="flex items-center gap-2 text-amber-400">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span class="font-semibold" id="score-display">0</span> pts
+                </div>
+                <div class="h-4 w-px bg-slate-700"></div>
+                <div class="flex items-center gap-2 text-rose-400">
+                    <i class="fa-solid fa-fire"></i>
+                    <span class="font-semibold" id="streak-display">0</span> streak
+                </div>
+                <div class="h-4 w-px bg-slate-700"></div>
+                <div class="flex items-center gap-2 text-sky-400">
+                    <i class="fa-solid fa-clock"></i>
+                    <span class="font-semibold" id="timer-display">00:00</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 max-w-4xl w-full mx-auto">
+
+        <!-- SCREEN 1: WELCOME SCREEN -->
+        <div id="welcome-screen" class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-md text-center max-w-2xl w-full animate-fadeIn">
+            <div class="inline-flex p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl text-amber-400 text-4xl mb-6 shadow-inner">
+                <i class="fa-solid fa-hotel"></i>
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-bold font-['Playfair_Display'] text-white mb-4">Nâng cao Kỹ năng Tiếng Anh Lễ Tân</h2>
+            <p class="text-slate-300 text-sm sm:text-base mb-8 leading-relaxed">
+                Bài kiểm tra tình huống thực tế giúp bạn tự tin xử lý check-in/check-out, giải quyết phàn nàn của khách hàng và tư vấn dịch vụ chuyên nghiệp chuẩn 5 sao.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 text-left">
+                <div class="bg-slate-900/50 border border-slate-700/70 p-4 rounded-xl">
+                    <div class="text-amber-400 text-lg mb-2"><i class="fa-solid fa-circle-question"></i></div>
+                    <h3 class="font-semibold text-white text-sm">10 Tình huống</h3>
+                    <p class="text-xs text-slate-400">Đa dạng các tình huống tại sảnh chờ.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-700/70 p-4 rounded-xl">
+                    <div class="text-amber-400 text-lg mb-2"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="font-semibold text-white text-sm">Chấm điểm ngay</h3>
+                    <p class="text-xs text-slate-400">Giải thích chi tiết ngữ cảnh giao tiếp.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-700/70 p-4 rounded-xl">
+                    <div class="text-amber-400 text-lg mb-2"><i class="fa-solid fa-certificate"></i></div>
+                    <h3 class="font-semibold text-white text-sm">Đánh giá chuẩn 5*</h3>
+                    <p class="text-xs text-slate-400">Nâng cao phản xạ tiếng Anh chuyên ngành.</p>
+                </div>
+            </div>
+
+            <button id="start-btn" class="w-full py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/25 transition-all transform hover:-translate-y-0.5 text-base sm:text-lg flex items-center justify-center gap-3">
+                <span>Bắt đầu Khảo sát Tình huống</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- SCREEN 2: QUIZ SCREEN -->
+        <div id="quiz-screen" class="hidden w-full bg-slate-800/80 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-md animate-fadeIn">
+            <!-- Progress Bar -->
+            <div class="mb-6">
+                <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                    <span id="question-tracker">Câu hỏi 1 / 10</span>
+                    <span id="category-badge" class="bg-amber-500/10 text-amber-400 border border-amber-500/30 px-2.5 py-0.5 rounded-full font-medium">Check-in & Registration</span>
+                </div>
+                <div class="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden border border-slate-700">
+                    <div id="progress-bar" class="bg-gradient-to-r from-amber-500 to-amber-400 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Situation / Question Card -->
+            <div class="mb-6">
+                <div class="bg-slate-900/60 border border-slate-700/80 p-5 rounded-xl mb-6">
+                    <span class="text-xs uppercase tracking-wider text-amber-400 font-bold block mb-1">Tình huống thực tế:</span>
+                    <p id="question-text" class="text-base sm:text-lg text-slate-100 font-medium leading-relaxed"></p>
+                </div>
+
+                <!-- Options -->
+                <div id="options-container" class="space-y-3">
+                    <!-- Dynamic options will be injected here -->
+                </div>
+            </div>
+
+            <!-- Explanation Box (Hidden initially) -->
+            <div id="explanation-box" class="hidden bg-slate-900/90 border border-slate-700 p-5 rounded-xl mb-6 animate-fadeIn">
+                <div class="flex items-center gap-2 mb-2">
+                    <i id="explanation-icon" class="fa-solid fa-circle-check text-lg"></i>
+                    <h4 id="explanation-title" class="font-bold text-base">Chính xác!</h4>
+                </div>
+                <p id="explanation-text" class="text-sm text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Next Button -->
+            <div class="flex justify-end">
+                <button id="next-btn" class="hidden px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl shadow-lg transition-all flex items-center gap-2">
+                    <span id="next-btn-text">Câu tiếp theo</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: RESULTS SCREEN -->
+        <div id="results-screen" class="hidden bg-slate-800/80 border border-slate-700 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-md text-center max-w-2xl w-full animate-fadeIn">
+            <div id="result-icon-container" class="inline-flex p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl text-amber-400 text-5xl mb-4 shadow-inner">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold font-['Playfair_Display'] text-white mb-2">Hoàn thành xuất sắc!</h2>
+            <p id="result-subtitle" class="text-slate-300 text-sm sm:text-base mb-6">Bạn đã hoàn thành bộ câu hỏi tình huống lễ tân khách sạn.</p>
+
+            <div class="grid grid-cols-3 gap-4 mb-8 bg-slate-900/50 border border-slate-700/70 p-4 rounded-xl">
+                <div>
+                    <span class="block text-xs text-slate-400 mb-1">Tổng điểm</span>
+                    <span id="final-score" class="text-xl sm:text-2xl font-bold text-amber-400">0/100</span>
+                </div>
+                <div>
+                    <span class="block text-xs text-slate-400 mb-1">Độ chính xác</span>
+                    <span id="final-accuracy" class="text-xl sm:text-2xl font-bold text-emerald-400">0%</span>
+                </div>
+                <div>
+                    <span class="block text-xs text-slate-400 mb-1">Thời gian</span>
+                    <span id="final-time" class="text-xl sm:text-2xl font-bold text-sky-400">00:00</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button id="review-btn" class="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-xl transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Xem lại đáp án</span>
+                </button>
+                <button id="restart-btn" class="px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>Làm lại bài</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: REVIEW SCREEN -->
+        <div id="review-screen" class="hidden w-full bg-slate-800/80 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-md animate-fadeIn max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-700 mb-6">
+                <h3 class="text-xl font-bold font-['Playfair_Display'] text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-question"></i> Xem lại chi tiết đáp án
+                </h3>
+                <button id="back-to-results-btn" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-sm font-semibold rounded-lg transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Quay lại
+                </button>
+            </div>
+            <div id="review-container" class="space-y-6 overflow-y-auto pr-2 custom-scrollbar">
+                <!-- Injected review items -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-xs text-slate-500 border-t border-slate-800">
+        &copy; 2026 Hotel English Pro. Professional Hospitality Training.
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
